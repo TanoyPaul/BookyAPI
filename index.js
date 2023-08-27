@@ -1,4 +1,8 @@
+require("dotenv").config();
+
 const express = require("express");
+const mongoose = require("mongoose");
+
 let bodyParser = require("body-parser");  // Helps in post request
 // body-parser will change the entire body to convert it into json format so that machine can read that .
 
@@ -11,6 +15,11 @@ const booky = express();
 
 booky.use(bodyParser.urlencoded({extended: true}));
 booky.use(bodyParser.json());// To ensure the work of body-parser .
+
+ mongoose.connect(
+process.env.MONGO_URL,
+).then(() => console.log("Connection Establised !"))
+;
 
 //  GET REQUESTS
 
